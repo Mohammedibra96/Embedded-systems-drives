@@ -36,23 +36,6 @@ OPTIONS:
  ***************************************************************/
 #define 	UART_CR1_PARITY_STATE		UART_PARITY_DISABLED
 
-
-
-
-
-/***************************************************************
- * Description: This configuration configures the channel Num
- * 				bit in UART Frame
- *
- * Options:
- * 		1- UART_CHANNEL_1
- * 		2- UART_CHANNEL_2
- * 		3- UART_CHANNEL_3
- * 		4- UART_CHANNEL_4
- *		5- UART_CHANNEL_5
- ***************************************************************/
-
-
 /*
  * Description: This configuration configures the mode of the UART
  *OPTIONS:
@@ -61,7 +44,15 @@ OPTIONS:
  * 				UART_MODE_INTERRUPT
  *
  * ***************************/
-#define UART_MODE  UART_MODE_INTERRUPT
+#define UART_CH1_TX_MODE  UART_MODE_INTERRUPT
+#define UART_CH1_RX_MODE  UART_MODE_INTERRUPT
+
+#define UART_CH2_TX_MODE  UART_MODE_INTERRUPT
+#define UART_CH2_RX_MODE  UART_MODE_DMA
+
+#define UART_CH3_TX_MODE  UART_MODE_DMA
+#define UART_CH3_RX_MODE  UART_MODE_DMA
+
 
 /***************************************************************
  * Description: This configuration configures the number Data Bits
@@ -93,10 +84,43 @@ OPTIONS:
  ***************************************************************/
 /*#define 	UART_BAUDRATE			UART_BAUDRATE_8MHZ   */
 
-UART_CFG_t* Get_UART_CnfStruct(void);
+
+/***************************************************************
+ * Description: Enable or disable LIN detection
+ *
+ * Options:
+ * 		1- UART_LIN_ENABLE
+ * 		2- UART_LIN_DISABLE
+ ***************************************************************/
+
+#define UART_LIN_STATE		UART_LIN_ENABLE
+
+
+/***************************************************************
+ * Description: Enable or disable LIN interrupt detection
+ *
+ * Options:
+ * 		1- UART_LIN_BREAK_INTERRUPT_ENABLE
+ * 		2- UART_LIN_BREAK_INTERRUPT_DISABLE
+ ***************************************************************/
+
+#define	UART_LIN_BREAK_INTERRUPT_STATE	UART_LIN_BREAK_INTERRUPT_ENABLE
+
+/***************************************************************
+ * Description: Enable or disable LIN interrupt detection
+ *
+ * Options:
+ * 		1- UART_LIN_BREAK_11_DETECTION
+ * 		2- UART_LIN_BREAK_10_DETECTION
+ ***************************************************************/
+
+
+#define UART_LIN_BREAK_LENGTH			UART_LIN_BREAK_11_DETECTION
 
 
 
+
+UART_CFG_t* Get_UART_CnfStruct(u8 UART_CHANNEL);
 
 
 #endif

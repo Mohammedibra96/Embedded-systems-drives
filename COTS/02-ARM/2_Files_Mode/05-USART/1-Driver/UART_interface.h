@@ -8,7 +8,6 @@ Description:This Header file is used to interface with the UART module in STM32f
 #define UART_INTERFACE_H
 
 
-
 #define UART_CHANNEL_1	0
 #define UART_CHANNEL_2	1
 #define UART_CHANNEL_3	2
@@ -56,13 +55,9 @@ Description:This Header file is used to interface with the UART module in STM32f
 
 
 
-
-
 #define	UART_CR1_ENABLED								0x00002000
-/*TODO: Anis has added that next line*/
 #define UART_CR1_DISABLED								0xFFFFDFFF
 
-/*TODO: Set the clear value*/
 #define	UART_CR1_DATA_BITS_8									0x00000000
 #define	UART_CR1_DATA_BITS_9									0X00001000
 
@@ -126,25 +121,20 @@ Description:This Header file is used to interface with the UART module in STM32f
 #define UART_STATUS_CTS		(u16)0x200
 
 
+/****************************************	LIN_MACROS	*********************************************************/
+#define UART_SR_LIN_BREAK_DETECTION_FLAG		0x0100
+#define UART_LIN_ENABLE							0x4000
+#define UART_LIN_DISABLE						0x0000
+#define UART_LIN_BREAK_INTERRUPT_ENABLE			0x0040
+#define UART_LIN_BREAK_INTERRUPT_DISABLE		0x0000
+#define UART_LIN_BREAK_11_DETECTION				0x0020
+#define UART_LIN_BREAK_10_DETECTION				0x0000
 
 
 
-
+/****************************************	DMA MACROS	*********************************************************/
 #define UART_DMA_TRANSMIT_ENABLE	(u8)0x80
 #define UART_DMA_RECIEVE_ENABLE		(u8)0x40
-
-
-typedef struct {
-	u8  Parity;
-	u8  Mode;
-	u8 DateSize;
-	u8 StopBit;
-	u32 BaudRate;
-}UART_CFG_t;
-
-
-
-
 
 
 /*=============================================== General Definitions ==============================================*/
@@ -153,9 +143,25 @@ typedef void(*UART_callBack_t)(void);
 typedef 	u32	UART_STATUS;
 
 
+
+
+
+
+typedef struct {
+	u8  Parity  ;
+	u8  TX_Mode ;
+	u8  RX_Mode ;
+	u8 DateSize ;
+	u8 StopBit  ;
+	u16 LINstate;
+	u32 BaudRate;
+}UART_CFG_t     ;
+
+
+
 /*=================================================== Prototypes ===================================================*/
 
-void UART_voidInitStruct(UART_CFG_t UART_cfg,u32 UART_CHANNEL,u32 sysClk);
+void UART_voidInitStruct (u32 UART_CHANNEL,u32 sysClk);
 
 
 u8 UART_errTransmit(u32 UART_CHANNEL,u8* Copy_pu8Data, u16 Copy_u16Size);
@@ -166,5 +172,15 @@ u8 UART_errSetCallBackTrans(u32 UART_CHANNEL,UART_callBack_t UART_callBack);
 u8 UART_errSetCallBackRecieve(u32 UART_CHANNEL,UART_callBack_t UART_callBack);
 UART_STATUS UART_u16GetStatus(u32 UART_CHANNEL);
 
+	/*	
+	Discreption:
+		LIN protcol has some fixed configurations in the UART registers,
+		this function will do them all to the specified channel.
+
+	Note that: you should choose some extra configuration for the lin status itself	
+	*/
+
+ErrorStatus UART_LINgenerateBreak(u32 UART_CHANNEL);
+ErrorStatus UART_LINsetCallBackBreak(u8 LIN_CHANNEL,void (*callBackFunction)(u8));
 
 #endif

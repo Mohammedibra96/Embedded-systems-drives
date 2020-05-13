@@ -4,6 +4,7 @@ Version:1.0
 Date:5 April 2020
 Description:This Header file is used to interface with the HUART module in STM32f10x evaluation kit
 ***********************************************************************************************/
+
 #ifndef HUART_INTERFACE_H
 #define HUART_INTERFACE_H
 
@@ -12,30 +13,30 @@ Description:This Header file is used to interface with the HUART module in STM32
 
 #if UART_AFIO == UART_NOREMAP
 
-#define UART1_PORT		        PORTA
-#define	UART1_Tx_PIN			PIN9
-#define	UART1_Rx_PIN			PIN10
+#define UART1_PORT		        GPIO_PORT_A
+#define	UART1_Tx_PIN			GPIO_PIN9
+#define	UART1_Rx_PIN			GPIO_PIN10
 
 
 #elif UART_AFIO == UART_REMAP
 
-#define UART1_PORT			PORTB
-#define	UART1_Tx_PIN			PIN6
-#define	UART1_Rx_PIN			PIN7
+#define UART1_PORT			GPIO_PORT_B
+#define	UART1_Tx_PIN			GPIO_PIN6
+#define	UART1_Rx_PIN			GPIO_PIN7
 
 #endif
 
 
 
-#define UART2_PORT			    PORTA
-#define	UART2_Tx_PIN			PIN2
-#define	UART2_Rx_PIN			PIN3
+#define UART2_PORT			    GPIO_PORT_A
+#define	UART2_Tx_PIN			GPIO_PIN2
+#define	UART2_Rx_PIN			GPIO_PIN3
 
 
 
-#define UART3_PORT			    PORTB
-#define	UART3_Tx_PIN			PIN10
-#define	UART3_Rx_PIN			PIN11
+#define UART3_PORT			    GPIO_PORT_B
+#define	UART3_Tx_PIN			GPIO_PIN10
+#define	UART3_Rx_PIN			GPIO_PIN11
 
 /*
 #define UART4_PORT			    PORTA
@@ -53,8 +54,8 @@ Description:This Header file is used to interface with the HUART module in STM32
 
 
 
-#define UART_Tx_PIN_MODE MODE_OUTPUT_10_AF_PUSHPULL
-#define UART_Rx_PIN_MODE MODE_INPUT_PULLUP
+#define UART_Tx_PIN_MODE GPIO_MODE_OUTPUT_10_AF_PUSHPULL
+#define UART_Rx_PIN_MODE GPIO_MODE_INPUT_PULLUP
 
 
 
@@ -143,18 +144,18 @@ Description:This Header file is used to interface with the HUART module in STM32
 
 
 
-#include"GPIO_interface.h"
+#include"GPIO.h"
 
 
 typedef struct
 {
-	GPIO_PinConfig_t GPIO_Output	      ;
-	GPIO_PinConfig_t GPIO_Input		      ;
-	u32 HRCC_Enable_Port		          ;
-	u8 NVIC_Enable_Prepherial_Interrupt  ;
-	u8 NVIC_DMA_Tx						  ;
-	u8 NVIC_DMA_Rx						  ;
-	u32 HRCC_Enable_Prepherial			  ;
+	 GPIO_t GPIO_Output	                   ;
+	 GPIO_t GPIO_Input		               ;
+	u32 HRCC_Enable_Port		           ;
+	u8 NVIC_Enable_Prepherial_Interrupt    ;
+	u8 NVIC_DMA_Tx						   ;
+	u8 NVIC_DMA_Rx						   ;
+	u32 HRCC_Enable_Prepherial			   ;
 }HUART_CNFG_t;
 
 

@@ -8,7 +8,8 @@ Description:This Source file is used to interface with the HUART module in STM32
 #include "STD_TYPES.h"
 #include"RCC.h"
 #include"NVIC_interface.h"
-#include"GPIO_interface.h"
+#include"GPIO.h"
+
 
 #include "UART_interface.h"
 #include "UART_cnfg.h"
@@ -48,15 +49,15 @@ HUART_CNFG_t HUART_cnfg[UART_MODULES_NUM]=
 	{
 		.GPIO_Output                      =
 		{
-				.PIN=UART1_GPIO_OUTPUT_PIN_NUM,
-				.MODE=UART_Tx_PIN_MODE,
-				.PORT=UART1_GPIO_OUTPUT_PORT,
+				.Pin=UART1_GPIO_OUTPUT_PIN_NUM,
+				.Mode=UART_Tx_PIN_MODE,
+				.Port=UART1_GPIO_OUTPUT_PORT,
 		},
 	    .GPIO_Input                       =
 	    {
-	    	 .PIN=UART1_GPIO_INPUT_PIN_NUM,
-	    	 .MODE=UART_Rx_PIN_MODE,
-	    	 .PORT=UART1_GPIO_INPUT_PORT,
+	    	 .Pin=UART1_GPIO_INPUT_PIN_NUM,
+	    	 .Mode=UART_Rx_PIN_MODE,
+	    	 .Port=UART1_GPIO_INPUT_PORT,
 	    },
 		.HRCC_Enable_Port				  = UART1_HRCC_PORT,
 	    .NVIC_Enable_Prepherial_Interrupt = UART1_NVIC,
@@ -67,15 +68,15 @@ HUART_CNFG_t HUART_cnfg[UART_MODULES_NUM]=
 	{
 			.GPIO_Output                      =
 			{
-					.PIN=UART2_GPIO_OUTPUT_PIN_NUM,
-					.MODE=UART_Tx_PIN_MODE,
-					.PORT=UART2_GPIO_OUTPUT_PORT,
+					.Pin=UART2_GPIO_OUTPUT_PIN_NUM,
+					.Mode=UART_Tx_PIN_MODE,
+					.Port=UART2_GPIO_OUTPUT_PORT,
 			},
 		    .GPIO_Input                       =
 		    {
-		    	 .PIN=UART2_GPIO_INPUT_PIN_NUM,
-		    	 .MODE=UART_Rx_PIN_MODE,
-		    	 .PORT=UART2_GPIO_INPUT_PORT,
+		    	 .Pin=UART2_GPIO_INPUT_PIN_NUM,
+		    	 .Mode=UART_Rx_PIN_MODE,
+		    	 .Port=UART2_GPIO_INPUT_PORT,
 		    },
 			.HRCC_Enable_Port				  = UART2_HRCC_PORT,
 		    .NVIC_Enable_Prepherial_Interrupt = UART2_NVIC,
@@ -86,15 +87,15 @@ HUART_CNFG_t HUART_cnfg[UART_MODULES_NUM]=
 		{
 				.GPIO_Output                      =
 				{
-						.PIN=UART3_GPIO_OUTPUT_PIN_NUM,
-						.MODE=UART_Tx_PIN_MODE,
-						.PORT=UART3_GPIO_OUTPUT_PORT,
+						.Pin=UART3_GPIO_OUTPUT_PIN_NUM,
+						.Mode=UART_Tx_PIN_MODE,
+						.Port=UART3_GPIO_OUTPUT_PORT,
 				},
 			    .GPIO_Input                       =
 			    {
-			    	 .PIN=UART3_GPIO_INPUT_PIN_NUM,
-			    	 .MODE=UART_Rx_PIN_MODE,
-			    	 .PORT=UART3_GPIO_INPUT_PORT,
+			    	 .Pin=UART3_GPIO_INPUT_PIN_NUM,
+			    	 .Mode=UART_Rx_PIN_MODE,
+			    	 .Port=UART3_GPIO_INPUT_PORT,
 			    },
 				.HRCC_Enable_Port				  = UART3_HRCC_PORT,
 			    .NVIC_Enable_Prepherial_Interrupt = UART3_NVIC,
